@@ -1,4 +1,5 @@
-<?php include('credentials.php'); ?>
+<?php include('Customers.php'); ?>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -7,25 +8,14 @@
  * Time: 5:28 PM
  */
 
+$customers = new Customers();
+$customers = $customers->getCustomers();
 
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+for($i = 0; $i < sizeof($customers); $i++){
+    echo $customers[$i]->getId();
+    echo "<br>";
+    echo $customers[$i]->getName();
+    echo "<br>";
 }
 
-$sql = "SELECT * FROM customer";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo $row["id"];
-        echo " ".$row["name"];
-    }
-
-} else {
-    echo "0 results";
-}
-$conn->close();
 
