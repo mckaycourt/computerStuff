@@ -26,4 +26,5 @@ if($ID != "" && $name != '') {
     $stmt->execute();
     $stmt->close();
     $conn->close();
+    header('location: testDB_customer.php');
 }
