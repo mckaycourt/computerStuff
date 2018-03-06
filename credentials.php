@@ -7,6 +7,7 @@
  */
 
 $servername = "localhost";
-$username = "root";
-$password = "Mlhlt2200!";
-$dbname = "testDB";
+$username = "testUser";
+$password = "Testing123";
+$dbname = "it350";
+
