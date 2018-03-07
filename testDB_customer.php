@@ -1,6 +1,6 @@
 <?php include('Customers.php'); ?>
 <?php include('Items.php'); ?>
-
+<?php error_reporting( E_ALL ); ?>
 <?php
 /**
  * Created by PhpStorm.
@@ -9,15 +9,6 @@
  * Time: 5:28 PM
  */
 
-//$customers = new Customers();
-//$customers = $customers->getCustomers();
-//
-//for($i = 0; $i < sizeof($customers); $i++){
-//    echo $customers[$i]->getId();
-//    echo "<br>";
-//    echo $customers[$i]->getName();
-//    echo "<br>";
-//}
 
 $items = new Items();
 $items = $items->getItems();
