@@ -1,4 +1,4 @@
-<?php include('credentials.php'); ?>
+<?php include('credentialsTest.php'); ?>
 
 <?php
 /**
@@ -7,12 +7,12 @@
  * Date: 3/5/18
  * Time: 10:01 PM
  */
-
+$credentials = new credentialsTest();
 $ID = isset($_GET['id']) ? $_GET['id'] : '';
 $name = isset($_GET['name']) ? $_GET['name'] : '';
 
 if($ID != "" && $name != '') {
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($credentials->getServername(), $credentials->getUsername(), $credentials->getPassword(), $credentials->getDbname());
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
