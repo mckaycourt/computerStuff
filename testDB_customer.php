@@ -1,6 +1,7 @@
 <?php include('Customers.php'); ?>
 <?php include('Items.php'); ?>
 <?php error_reporting( E_ALL ); ?>
+<?php ini_set('display_errors', 1);?>
 <?php
 /**
  * Created by PhpStorm.
