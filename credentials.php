@@ -9,5 +9,5 @@
 $servername = "localhost";
 $username = "testUser";
 $password = "Testing123";
-$dbname = "it350";
+$dbname = "IT350";
 

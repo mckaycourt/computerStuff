@@ -1,4 +1,5 @@
 <?php include('Item.php'); ?>
+<?php include('credentialsTest.php');?>
 <?php
 
 /**
@@ -7,18 +8,13 @@
  * Date: 3/5/18
  * Time: 9:32 PM
  */
-class Items
+class Items extends credentialsTest
 {
     private $items;
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "Mlhlt2200!";
-    private $dbname = "IT350";
 
     function __construct()
     {
         $this->items = null;
-
     }
 
     /**
@@ -27,7 +23,7 @@ class Items
     public function getItems()
     {
         if($this->items == null){
-            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+            $conn = new mysqli($this->getServername(), $this->getUsername(), $this->getPassword(), $this->getDbname());
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
@@ -58,24 +54,6 @@ class Items
     public function setItems($items)
     {
         $this->items = $items;
-    }
-
-    public function insertItem($ID, $name){
-
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $stmt = $conn->prepare("INSERT INTO Item (ID, name) VALUES (?, ?)");
-        $stmt->bind_param("sss", $ID, $name);
-
-
-        echo $ID." ".$name;
-
-        $stmt->execute();
-        $stmt->close();
-        $conn->close();
     }
 
 }
