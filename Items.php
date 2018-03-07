@@ -11,9 +11,9 @@ class Items
 {
     private $items;
     private $servername = "localhost";
-    private $username = "testUser";
-    private $password = "Testing123";
-    private $dbname = "it350";
+    private $username = "root";
+    private $password = "Mlhlt2200!";
+    private $dbname = "IT350";
 
     function __construct()
     {
