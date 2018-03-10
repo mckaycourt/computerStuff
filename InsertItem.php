@@ -16,15 +16,24 @@ if($ID != "" && $name != '') {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    echo $ID . " " . $name;
 
     $stmt = $conn->prepare("INSERT INTO Item (ID, name) VALUES (?, ?)");
     $stmt->bind_param("ss", $ID, $name);
-
-
-
     $stmt->execute();
     $stmt->close();
+
+
+    $sql = "SELECT LAST_INSERT_ID();";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo $row["LAST_INSERT_ID()"];
+        }
+
+    } else {
+        echo "0 results";
+    }
     $conn->close();
-    header('location: testDB_customer.php');
+//    header('location: testDB_customer.php');
 }
