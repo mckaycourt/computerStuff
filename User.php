@@ -15,9 +15,11 @@ class User
     private $permissions;
     private $address;
     private $creditCard;
+    private $userID;
 
-    function __construct($firstName, $lastName, $userName, $email, $permissions, $address, $creditCard)
+    function __construct($userID, $firstName, $lastName, $userName, $email, $permissions, $address, $creditCard)
     {
+        $this->userID = $userID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->username = $userName;
@@ -81,6 +83,14 @@ class User
     public function getCreditCard()
     {
         return $this->creditCard;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserID()
+    {
+        return $this->userID;
     }
 
 }

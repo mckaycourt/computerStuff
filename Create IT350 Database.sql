@@ -47,8 +47,7 @@ CREATE TABLE Employee (
 );
 
 CREATE TABLE User (
-  Customer_ID    INT AUTO_INCREMENT PRIMARY KEY,
-  User_ID        INT,
+  User_ID    INT AUTO_INCREMENT PRIMARY KEY,
   FirstName      VARCHAR(255),
   LastName       VARCHAR(255),
   Username       VARCHAR(255),

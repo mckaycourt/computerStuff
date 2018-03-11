@@ -12,4 +12,4 @@ session_start();
 // out. This also happens automatically when the browser is closed
 session_destroy();
 
-header('location: testDB_customer.php');
+header('location: Items.php');

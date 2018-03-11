@@ -20,25 +20,29 @@ if($username != null && $password != null) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare("SELECT FirstName, LastName, Username, email FROM Customer WHERE Username = ? AND Password = ?;");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT User_ID, FirstName, LastName, Username, email, Password FROM User WHERE Username = ?;");
+    $options = [
+        'cost' => 12,
+    ];
+
+    $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($firstName, $lastName, $username, $email);
-
-    $result = $stmt->execute();
-
+    $stmt->bind_result($userID, $firstName, $lastName, $username, $email, $hashed_password);
         while ($stmt->fetch()) {
-//            $user = new User($row["FirstName"], $row["LastName"], $row["Username"], $row["email"], 0, $row["Address"], $row["Credit_Card_ID"]);
-            $user = new User($firstName, $lastName, $username, $email, 0, "", "");
-            session_start();
-            $_SESSION['username'] = $user->getUsername();
-            $_SESSION['email'] = $user->getEmail();
-            $_SESSION['address'] = $user->getAddress();
+            if(password_verify($password, $hashed_password)){
+                $user = new User($userID, $firstName, $lastName, $username, $email, 0, "", "");
+                session_start();
+                $_SESSION['username'] = $user->getUsername();
+                $_SESSION['email'] = $user->getEmail();
+                $_SESSION['address'] = $user->getAddress();
 
-            echo 'You have entered valid use name and password';
+                echo 'You have entered valid use name and password';
+            }
+            echo $password."<br>".$hashed_password;
+
         }
 
 
     $conn->close();
-    header('location: testDB_customer.php');
+    header('location: Users.php');
 }

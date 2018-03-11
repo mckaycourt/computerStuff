@@ -1,59 +1,77 @@
-<?php include('Item.php'); ?>
-<?php include('credentialsTest.php');?>
-<?php
+<?php include('menu.php'); ?>
+<html>
+<h2>Insert into Items</h2>
+<form action="InsertItem.php" method="get">
+    ID: <input type="number" name="id">
+    Name: <input type="text" name="name">
+    <input type="hidden" name="type" value="insert">
+    <input type="submit" value="Submit">
 
+
+</form>
+</html>
+<?php include('Customers.php'); ?>
+<?php include('ItemsDB.php'); ?>
+<style><?php include('table.css'); ?></style>
+<?php error_reporting( E_ALL ); ?>
+<?php ini_set('display_errors', 1);?>
+<?php
 /**
  * Created by PhpStorm.
  * User: mckaycourt
- * Date: 3/5/18
- * Time: 9:32 PM
+ * Date: 2/20/18
+ * Time: 5:28 PM
  */
-class Items extends credentialsTest
-{
-    private $items;
 
-    function __construct()
-    {
-        $this->items = null;
+if (isset( $_SESSION['username'] ) ) {
+    $items = new ItemsDB();
+    $items = $items->getItems();
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>";
+    echo "Item ID";
+    echo "</th>";
+    echo "<th>";
+    echo "ID";
+    echo "</th>";
+    echo "<th>";
+    echo "Name";
+    echo "</th>";
+    echo "<th>";
+    echo "Delete/Edit";
+    echo "</th>";
+    echo "</tr>";
+
+    for ($i = 0; $i < sizeof($items); $i++) {
+        echo "<tr>";
+        echo "<td>";
+        echo $items[$i]->getItemId();
+        echo "</td>";
+        echo "<td>";
+        echo $items[$i]->getID();
+        echo "</td>";
+        echo "<td>";
+        echo $items[$i]->getName();
+        echo "</td>";
+        echo "<td>";
+        echo "<button onclick='removeItem(".$items[$i]->getItemId().")'>X</button>";
+        echo "<button onclick='editItem(".$items[$i]->getItemId().")'>Edit</button>";
+        echo "</td>";
+
+        echo "<tr>";
     }
-
-    /**
-     * @return mixed
-     */
-    public function getItems()
-    {
-        if($this->items == null){
-            $conn = new mysqli($this->getServername(), $this->getUsername(), $this->getPassword(), $this->getDbname());
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "SELECT * FROM Item";
-            $result = $conn->query($sql);
-            $arr = [];
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $item = new Item($row["Item_ID"], $row["ID"], $row["name"]);
-                    array_push($arr, $item);
-                }
-
-            } else {
-                echo "0 results";
-            }
-            $conn->close();
-            return $arr;
-        }
-        else{
-            return $this->item;
-        }
-    }
-
-    /**
-     * @param mixed $customers
-     */
-    public function setItems($items)
-    {
-        $this->items = $items;
-    }
-
+    echo "</table>";
 }
+else{
+    header('location: login.html');
+}
+?>
+<script>
+    function removeItem(id){
+        window.location = "insertItem.php?type=delete&id=" + id;
+    }
+    function editItem(id){
+
+    }
+</script>
+

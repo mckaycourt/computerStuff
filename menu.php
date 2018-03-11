@@ -70,9 +70,9 @@
 <body>
 
 <div class="topnav" id="myTopnav">
-    <a href="#home" class="active">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
+    <a href="Computers.php" class="active">Computers</a>
+    <a href="Users.php">Users</a>
+    <a href="Items.php">Items</a>
     <?php
     session_start();
     if (isset($_SESSION['username'])) {
