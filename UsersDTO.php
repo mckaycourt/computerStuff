@@ -65,6 +65,7 @@ if ($type == "insert") {
 //    header("location: https://www.google.com");
     }
 } else if ($type == "update" && $id != null) {
+    echo "in";
     $conn = new mysqli($credentials->getServername(), $credentials->getUsername(), $credentials->getPassword(), $credentials->getDbname());
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -72,10 +73,12 @@ if ($type == "insert") {
 
     $stmt = $conn->prepare("UPDATE User SET FirstName = ?, LastName = ?, Username = ?, Address = ?, email = ?, Credit_Card_ID = ? WHERE User_ID = ?");
     $stmt->bind_param("sssssss", $firstName, $lastName, $username, $address, $email, $creditCardID, $id);
+    echo $firstName;
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    header('location: Users.php');
+    echo "out";
+//    header('location: Users.php');
 
 } else if ($type == "delete" && $id != null) {
     $conn = new mysqli($credentials->getServername(), $credentials->getUsername(), $credentials->getPassword(), $credentials->getDbname());
