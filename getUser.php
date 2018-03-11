@@ -45,6 +45,8 @@ if($username != null && $password != null) {
                 $stmt->bind_result($permissions);
                 while($stmt->fetch()){
                     $_SESSION['permissions'] = $permissions;
+                    echo "you boss";
+                    echo $permissions;
                 }
             }
 
