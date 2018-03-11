@@ -70,7 +70,7 @@ else{
 ?>
 <script>
     function removeItem(id){
-        window.location = "insertItem.php?type=delete&id=" + id;
+        window.location = "InsertItem.php?type=delete&id=" + id;
     }
     function editItem(id){
 
