@@ -108,7 +108,7 @@
 
         </ol>
         <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
+            <button type="button" onclick="cancel();" class="cancelbtn">Cancel</button>
             <button type="button" onclick="submit();" class="signupbtn">Sign Up</button>
         </div>
     </div>
@@ -120,6 +120,35 @@
 
 <script>
     document.getElementById("password").onkeyup = function (){
+        var password = document.getElementById("password").value;
+        var password2 = document.getElementById("password-repeat").value;
+        if(!/[A-Z]/.test(password)){
+            document.getElementById("capital").style.color = "red";
+        }
+        else{
+            document.getElementById("capital").style.color = "black";
+        }
+        if(!/[0-9]/.test(password)){
+            document.getElementById("number").style.color = "red";
+        }
+        else{
+            document.getElementById("number").style.color = "black";
+        }
+        if(password.length < 8){
+            document.getElementById("eight").style.color = "red";
+        }
+        else{
+            document.getElementById("eight").style.color = "black";
+        }
+        if(password !== password2){
+            document.getElementById("match").style.color = "red";
+        }
+        else{
+            document.getElementById("match").style.color = "black";
+        }
+    };
+
+    document.getElementById("password-repeat").onkeyup = function (){
         var password = document.getElementById("password").value;
         var password2 = document.getElementById("password-repeat").value;
         if(!/[A-Z]/.test(password)){
@@ -162,8 +191,8 @@
     }
 
 
-    function reveal(){
-        document.getElementById("reveal").type = "text";
+    function cancel(){
+        window.location = "login.html";
     }
 
 

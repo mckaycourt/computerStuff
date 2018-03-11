@@ -1,18 +1,19 @@
 <?php include('menu.php'); ?>
 <?php include('UsersDB.php'); ?>
+<?php include('loginCheck.php'); ?>
 <style><?php include('table.css'); ?></style>
 <html>
 <h2>Create a new Person</h2>
 <form action="UsersDTO.php" method="get">
-    First Name: <input type="text" name="firstName">
-    Last Name: <input type="text" name="lastName">
-    Username: <input type="text" name="username">
-    Password: <input type="text" name="password">
-    Address: <input type="text" name="address">
-    Email: <input type="text" name="email">
-    Credit Card ID: <input type="text" name="creditCardID">
-    <input type="hidden" name="type" value="insert">
-    <input type="submit" value="Submit">
+    First Name: <input type="text" name="firstName"><br>
+    Last Name: <input type="text" name="lastName"><br>
+    Username: <input type="text" name="username"><br>
+    Password: <input type="text" name="password"><br>
+    Address: <input type="text" name="address"><br>
+    Email: <input type="text" name="email"><br>
+    Credit Card ID: <input type="text" name="creditCardID"><br>
+    <input type="hidden" name="type" value="insert"><br>
+    <input type="submit" value="Submit"><br>
 
 
 </form>

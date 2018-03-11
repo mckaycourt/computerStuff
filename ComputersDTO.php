@@ -19,6 +19,8 @@ $gpu = isset($_GET['gpu']) ? $_GET['gpu'] : null;
 $screenSize = isset($_GET['screenSize']) ? $_GET['screenSize'] : null;
 $cpu = isset($_GET['cpu']) ? $_GET['cpu'] : null;
 $type = isset($_GET['type']) ? $_GET['type'] : null;
+$typeOfComputer = isset($_GET['typeOfComputer']) ? $_GET['typeOfComputer'] : null;
+
 $price = isset($_GET['price']) ? $_GET['price'] : null;
 $picture = isset($_GET['picture']) ? $_GET['picture'] : null;
 
@@ -32,7 +34,7 @@ if ($type == "insert") {
 
     $stmt = $conn->prepare("INSERT INTO Computer (Name, Hard_Drive, Ram, GPU, Screen_Size, CPU, Type, Price, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param("sssssssss", $name, $hardDrive, $ram, $gpu, $screenSize, $cpu, $type, $price, $picture);
+    $stmt->bind_param("sssssssss", $name, $hardDrive, $ram, $gpu, $screenSize, $cpu, $typeOfComputer, $price, $picture);
     $stmt->execute();
     $stmt->close();
     $sql = "SELECT LAST_INSERT_ID();";
@@ -65,6 +67,22 @@ if ($type == "insert") {
 
     $stmt = $conn->prepare("DELETE FROM Computer WHERE Computer_ID = ?");
     $stmt->bind_param("s", $computerID);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    header('location: Computers.php');
+}
+
+else if($type == "update"){
+    $conn = new mysqli($credentials->getServername(), $credentials->getUsername(), $credentials->getPassword(), $credentials->getDbname());
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    echo $typeOfComputer;
+    $stmt = $conn->prepare("UPDATE Computer SET Name = ?, Hard_Drive = ?, Ram = ?, GPU = ?, Screen_Size = ?, CPU = ?, Type = ?, Price = ?, Picture = ? WHERE Computer_ID = ?");
+    $stmt->bind_param("ssssssssss", $name, $hardDrive, $ram, $gpu, $screenSize, $cpu, $typeOfComputer, $price, $picture, $computerID);
+    echo $stmt->error;
     $stmt->execute();
     $stmt->close();
     $conn->close();

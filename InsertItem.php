@@ -1,5 +1,5 @@
 <?php include('credentialsTest.php'); ?>
-
+<?php include('loginCheck.php'); ?>
 <?php
 /**
  * Created by PhpStorm.

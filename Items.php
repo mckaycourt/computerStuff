@@ -1,11 +1,13 @@
 <?php include('menu.php'); ?>
+<?php include('loginCheck.php'); ?>
+
 <html>
 <h2>Insert into Items</h2>
 <form action="InsertItem.php" method="get">
-    ID: <input type="number" name="id">
-    Name: <input type="text" name="name">
-    <input type="hidden" name="type" value="insert">
-    <input type="submit" value="Submit">
+    ID: <input type="number" name="id"><br>
+    Name: <input type="text" name="name"><br>
+    <input type="hidden" name="type" value="insert"><br>
+    <input type="submit" value="Submit"><br>
 
 
 </form>

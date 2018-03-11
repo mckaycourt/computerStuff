@@ -1,5 +1,6 @@
 <?php include('credentialsTest.php'); ?>
 <?php include('User.php'); ?>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -33,16 +34,23 @@ if($username != null && $password != null) {
                 $user = new User($userID, $firstName, $lastName, $username, $email, 0, "", "");
                 session_start();
                 $_SESSION['username'] = $user->getUsername();
+                $_SESSION['firstName'] = $user->getFirstName();
+                $_SESSION['lastName'] = $user->getLastName();
                 $_SESSION['email'] = $user->getEmail();
                 $_SESSION['address'] = $user->getAddress();
-
-                echo 'You have entered valid use name and password';
+                $stmt->close();
+                $stmt = $conn->prepare("SELECT Permissions FROM Employee WHERE User_ID = ?;");
+                $stmt->bind_param("s", $userID);
+                $stmt->execute();
+                $stmt->bind_result($permissions);
+                while($stmt->fetch()){
+                    $_SESSION['permissions'] = $permissions;
+                }
             }
-            echo $password."<br>".$hashed_password;
 
         }
 
 
     $conn->close();
-    header('location: Users.php');
+    header('location: home.php');
 }

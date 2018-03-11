@@ -2,17 +2,17 @@
 <html>
 <h2>Insert into Computers</h2>
 <form action="ComputersDTO.php" method="get">
-    Name: <input type="text" name="name">
-    Hard Drive: <input type="text" name="hardDrive">
-    Ram: <input type="text" name="ram">
-    GPU: <input type="text" name="gpu">
-    Screen Size: <input type="text" name="screenSize">
-    CPU: <input type="text" name="cpu">
-    Type: <input type="text" name="type">
-    Price: <input type="number" name="price" required>
-    Picture: <input type="text" name="picture">
-    <input type="hidden" name="type" value="insert">
-    <input type="submit" value="Submit">
+    Name: <input type="text" name="name"><br>
+    Hard Drive: <input type="text" name="hardDrive"><br>
+    Ram: <input type="text" name="ram"><br>
+    GPU: <input type="text" name="gpu"><br>
+    Screen Size: <input type="text" name="screenSize"><br>
+    CPU: <input type="text" name="cpu"><br>
+    Type: <input type="text" name="type"><br>
+    Price: <input type="number" name="price" required><br>
+    Picture: <input type="text" name="picture"><br>
+    <input type="hidden" name="type" value="insert"><br>
+    <input type="submit" value="Submit"><br>
 
 
 </form>
@@ -108,6 +108,7 @@ else{
     }
     function editItem(id){
 
+        window.location = "editComputer.php?computerID=" + id;
     }
 </script>
 

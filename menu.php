@@ -70,11 +70,18 @@
 <body>
 
 <div class="topnav" id="myTopnav">
-    <a href="Computers.php" class="active">Computers</a>
-    <a href="Users.php">Users</a>
-    <a href="Items.php">Items</a>
+    <a href="home.php">Home</a>
     <?php
     session_start();
+
+    if (isset($_SESSION['permissions'])) {
+        ?>
+        <a href="Computers.php">Computers</a>
+        <a href="Accessories.php">Accessories</a>
+        <a href="Users.php">Users</a>
+        <a href="Items.php">Items</a>
+        <?php
+    }
     if (isset($_SESSION['username'])) {
         echo "<a href='logout.php'>Log Out</a>";
     } else {

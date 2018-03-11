@@ -1,4 +1,5 @@
 <?php include('UsersDB.php'); ?>
+<?php include('loginCheck.php'); ?>
 
 <?php
 /**
