@@ -43,7 +43,7 @@ CREATE TABLE Description (
 CREATE TABLE Employee (
   Employee_ID INT AUTO_INCREMENT PRIMARY KEY,
   User_ID     INT,
-  Permissions INT
+  Permissions ENUM("employee", "admin")
 );
 
 CREATE TABLE User (
